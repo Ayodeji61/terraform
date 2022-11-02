@@ -31,5 +31,5 @@ variable "sample5" {
 
 ## Access a list value
 output "sample4" {
-  value = var.sample4
+  value = var.sample4[0]
 }
