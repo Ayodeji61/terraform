@@ -33,3 +33,8 @@ variable "sample5" {
 output "sample4" {
   value = var.sample4[0]
 }
+
+## Access a list value
+output "sample5" {
+  value = var.sample5["number"]
+}
