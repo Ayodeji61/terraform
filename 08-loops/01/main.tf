@@ -5,6 +5,5 @@ resource "aws_instance" "sample" {
     tags = {
         Name = "test-${count.index}"
     }
-    }
 
 }
