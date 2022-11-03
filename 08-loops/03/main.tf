@@ -1,16 +1,22 @@
 resource "aws_instance" "sample" {
-    count = length(var.instances)
+    for_each =      var.instances
     ami           = "ami-00d48a21603b2119b"
-    instance_type = "t3.micro"
+    instance_type = each.value.instance_type
     tags = {
-        Name = element(var.instances, count.index )
+        Name = each.value.tagName
     }
 }
 
-output "public_ip" {
-    value = aws_instance.sample.*.public_ip
-}
 
 variable "instances" {
-    default = ["cart", "catalogue"]
+    default = {
+        catalogue = {
+            instance_type = "t3.micro"
+            tagName = "CATALOGUE"
+        }
+        cart = {
+            instance_type = "t3.micro"
+            tagName = "CART"
+        }
+    }
 }
